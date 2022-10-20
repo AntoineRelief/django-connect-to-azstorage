@@ -2,6 +2,7 @@ import os, uuid, sys
 from azure.storage.filedatalake import DataLakeServiceClient
 from azure.core._match_conditions import MatchConditions
 from azure.storage.filedatalake._models import ContentSettings
+from django.conf import settings
 
 def initialize_storage_account(storage_account_name, storage_account_key):
   try:  
@@ -117,3 +118,10 @@ def list_directory_contents():
 
   except Exception as e:
     print(e)
+
+def retrieve_file(id):
+  initialize_storage_account(settings.STORAGE_ACCOUNT_NAME, settings.STORAGE_ACCOUNT_KEY)
+  file_system = service_client.get_file_client('block1', '{}.json'.format(id))
+  file = file_system.download_file()
+  content = file.readall()
+  return content
