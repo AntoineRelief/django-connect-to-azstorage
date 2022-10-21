@@ -10,7 +10,6 @@ def initialize_storage_account(storage_account_name, storage_account_key):
 
     service_client = DataLakeServiceClient(account_url="{}://{}.dfs.core.windows.net".format(
       "https", storage_account_name), credential=storage_account_key)
-    
   except Exception as e:
     print(e)
 
@@ -120,8 +119,10 @@ def list_directory_contents():
     print(e)
 
 def retrieve_file(id):
+  # enables to use service_client
   initialize_storage_account(settings.STORAGE_ACCOUNT_NAME, settings.STORAGE_ACCOUNT_KEY)
-  file_system = service_client.get_file_client('block1', '{}.json'.format(id))
+  # Indicate the block + the filename
+  file_system = service_client.get_file_client('block1', '{}.json'.format(id)) 
   file = file_system.download_file()
   content = file.readall()
   return content

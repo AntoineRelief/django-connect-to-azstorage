@@ -20,5 +20,7 @@ services:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - STORAGE_ACCOUNT_NAME=${STORAGE_ACCOUNT_NAME}
+      - STORAGE_ACCOUNT_KEY=${STORAGE_ACCOUNT_KEY}
     depends_on:
       - db

@@ -131,6 +131,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STORAGE_ACCOUNT_NAME="owndatalake1antoine"
+STORAGE_ACCOUNT_NAME = os.environ.get('STORAGE_ACCOUNT_NAME', '')
 
-STORAGE_ACCOUNT_KEY="eTaPKLawAIieCRwCKHQvyEGIzC5yX4nalqh+rCVvGzYn/EHSi5ECSvH3bPTMwcEeiI16QRtYTNZS+AStqfCagA=="
+STORAGE_ACCOUNT_KEY = os.environ.get('STORAGE_ACCOUNT_KEY', '')
